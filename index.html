@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Star Scale</title>
     <style>
@@ -15,7 +16,8 @@
 
         #scale {
             position: relative;
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
             height: 50px;
             background: linear-gradient(to right, #e0f7fa, #e1bee7);
             border: 2px solid #ccc;
@@ -27,7 +29,8 @@
         .label {
             display: flex;
             justify-content: space-between;
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
 
         }
 
@@ -66,6 +69,24 @@
 
         #clearBtn:hover {
             background-color: #ec407a;
+        }
+        @media (max-width: 640px) {
+            #scale, .label {
+                width: 90%;
+            }
+
+            #clearBtn {
+                width: 90%;
+                font-size: 14px;
+            }
+
+            .star {
+                font-size: 20px;
+            }
+
+            .number {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
