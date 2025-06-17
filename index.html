@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Scale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            background: rgba(211, 211, 211, 0.36);
+        }
+
+        #scale {
+            position: relative;
+            width: 600px;
+            height: 50px;
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .label {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .star {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: gold;
+            font-size: 24px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .number {
+            font-size: 12px;
+            color: black;
+        }
+
+        #clearBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #clearBtn:hover {
+            background-color: #ec407a;
+        }
+    </style>
+</head>
+<body>
+<div class="label">
+    <p>
+        Empowerment and direction are distinct leadership approaches. <br>
+
+        Empowerment focuses on giving individuals autonomy and responsibility, fostering ownership and innovation. Direction, on the other hand, involves providing clear
+        guidance and instructions, often prioritizing efficiency and immediate results.<br>
+
+        Effective leadership often involves a
+        balance between the two, adapting the approach based on the situation and the needs of the team.
+    </p>
+</div>
+<div class="label">
+    <span class="bold">Empowerment</span>
+    <span class="bold">Direction</span>
+</div>
+<div id="scale"></div>
+
+<script>
+    const scale = document.getElementById('scale');
+    let starCount = 0;
+
+    scale.addEventListener('click', (event) => {
+        const rect = scale.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+
+        starCount++;
+
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = `${x}px`;
+
+        const icon = document.createElement('div');
+        icon.textContent = '⭐';
+
+        const number = document.createElement('div');
+        number.classList.add('number');
+        number.textContent = starCount;
+
+        star.appendChild(icon);
+        star.appendChild(number);
+        scale.appendChild(star);
+    });
+</script>
+<button id="clearBtn">Clear</button>
+<script>
+    const clearBtn = document.getElementById('clearBtn');
+    clearBtn.addEventListener('click', () => {
+        scale.innerHTML = '';
+        starCount = 0;
+    });
+</script>
+</body>
+</html>
